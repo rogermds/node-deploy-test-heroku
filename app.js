@@ -1,34 +1,41 @@
-const express = require("express");
-const app = express();
-const mysql = require("mysql");
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-const port = process.env.PORT || 3000;
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 
-// Connection Details
-const connection = mysql.createConnection({
-	host: "us-cdbr-east-04.cleardb.com",
-	user: "b392262f4cfdfd",
-	password: "7c4ae6ca",
-	database: "heroku_f7227624a830ae6",
-}); connection.connect(function (error) {
-	if (!!error) console.log(error);
-	else console.log("SQL Database Connected!");
-}); 
+var app = express();
 
-// View engine
-app.set("view engine", "ejs");
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-// Render Home Page
-app.get("/", function (req, res) {
-	connection.query('SELECT * FROM user WHERE id = "1"', (error, rows) => {
-		if (error) throw error;
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-		if (!error) {
-			console.log(rows);
-			res.render("index", { rows });
-		}
-	});
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.listen(port);
-console.log(`Server is listening on port ${port}`);
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
