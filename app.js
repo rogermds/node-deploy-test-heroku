@@ -10,7 +10,10 @@ const connection = mysql.createConnection({
 	user: "b392262f4cfdfd",
 	password: "7c4ae6ca",
 	database: "heroku_f7227624a830ae6",
-});
+}); connection.connect(function (error) {
+	if (!!error) console.log(error);
+	else console.log("SQL Database Connected!");
+}); 
 
 // View engine
 app.set("view engine", "ejs");
