@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
   res.render('index');
 });
 
-router.post('/', async function(req, res) {
+router.post('/', async (req, res) => {
   const {nome, email} = req.body
   await Usuario.create({
     nome,
@@ -19,7 +19,7 @@ router.post('/', async function(req, res) {
   return res.redirect('/usuarios')
 })
 
-router.get("/usuarios", async function (req, res) {
+router.get("/usuarios", async (req, res) => {
   let users = await Usuario.findAll()
 	res.render("usuarios", {users});
 });

@@ -6,4 +6,12 @@ const config = {
 	dialect: "mysql",
 };
 
+// const config = {
+// 	username: "root",
+// 	password: "root",
+// 	database: "teste-banco",
+// 	host: "localhost",
+// 	dialect: "mysql",
+// };
+
 module.exports = config;

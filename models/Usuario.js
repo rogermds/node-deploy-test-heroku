@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
         id_usuario: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true
         },
         nome: DataTypes.STRING,
         email: DataTypes.STRING 
