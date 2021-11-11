@@ -18,9 +18,12 @@ const validadorCadastro = [
 					celular: celularBody,
 				},
 			});
-			if (procuraCelular.celular) {
-				return Promise.reject("Celular já cadastrado");
+			if (!procuraCelular) {
+				return celularBody;
 			}
+				if (procuraCelular.celular) {
+					return Promise.reject("Celular já cadastrado");
+				}
 		}),
 	check("email")
 		.notEmpty()
