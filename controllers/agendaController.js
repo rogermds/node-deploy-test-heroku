@@ -36,11 +36,9 @@ const agendaController = {
 				nome: {
 					[Op.like]: `%${nome}%`,
 				},
+				id_usuario: res.locals.sessao.id_usuario
 			},
-			order: [["id_contato", "ASC"]],
-			where: {
-				id_usuario: res.locals.sessao.id_usuario,
-			},
+			order: [["id_contato", "ASC"]]
 		});
 		let totalPaginas = Math.round(total / 10);
 		return res.render("agenda", { contatosGeral, totalPaginas });
