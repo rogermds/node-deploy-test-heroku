@@ -1,0 +1,60 @@
+<%- include('./partials/header.ejs') %>
+
+    <body>
+        <div class="table-responsive">
+            <div class='d-flex mt-4'>
+                <a href="/agenda/adicionar" class='me-5 ms-2'><button type="button" class="btn btn-success">+</button></a>
+                <form action='/agenda/pesquisar' class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 w-25 d-flex justify-content-center align-items-center" method="get">
+                    <input type="search" class="form-control form-control-dark mb-4 me-2" placeholder="Pesquisar..." aria-label="Search" name='nome'>
+                    <!-- <div class="dropdown mb-4 me-2">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Pesquisar por:
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Nome</a>
+                            <a class="dropdown-item" href="#">Email</a>
+                            <a class="dropdown-item" href="#">Celular</a>
+                        </div>
+                    </div> -->
+                        <button class='btn btn-success mb-4'>🔍</button>
+                </form>
+            </div>
+            <table class="table table-striped table-sm ms-3" style="width: 97.5%;">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Celular 1</th>
+                        <th scope="col">Celular 2</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% contatosGeral.forEach( contatos=> { %>
+                        <tr>
+                            <td><%= contatos.id_contato %></td>
+                            <td><%= contatos.nome %></td>
+                            <td><%= contatos.celular1 %></td>
+                            <td><%= contatos.celular2 %></td>
+                            <td><%= contatos.telefone %></td>
+                            <td>
+                                <a href="/agenda/contatos/<%= contatos.id_contato %>" class='btn btn-primary'>Ver</a>
+                                <a href="/agenda/contatos/editar/<%= contatos.id_contato %>" class='btn btn-secondary'>Editar</a>
+                                <a href="/agenda/excluir/<%= contatos.id_contato %>" class='btn btn-danger'>Excluir</a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <div class="btn-toolbar justify-content-between ms-2 me-5 pe-3 mb-2" role="toolbar">
+            <div class="btn-group ms-2" role="group">
+                <% for (numeroPagina = 1; numeroPagina<=totalPaginas; numeroPagina++) { %>
+                    <a href="?page=<%= numeroPagina %>"><button type="button" class="btn btn-secondary"><%= numeroPagina %> </button></a>
+                <% } %> 
+            </div>
+        </div>
+
+        <%- include('./partials/footer.ejs') %>
