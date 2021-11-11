@@ -12,20 +12,49 @@
                 <div class="modal-body p-5 pt-0">
                     <form action='/cadastrar' method="post">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Johnny Depp" name='nome'>
+                            <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="Johnny Depp" name='nome' value=<%= locals.old && old.nome %>>
                             <label for="floatingInput">Nome</label>
+                            <% if(locals.errors && errors.nome) { %>
+                                <span class='h6' style='color: red; font-size: 1.4rem;'>
+                                    <%= errors.nome.msg %>
+                                </span>
+                                <% } %>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="01234567899" name='celular'>
+                            <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="01234567899" name='celular' value="<%= locals.old && old.celular %>">
                             <label for="floatingInput">Celular</label>
+                            <% if(locals.errors && errors.celular) { %>
+                                <span class='h6' style='color: red; font-size: 1.4rem;'>
+                                    <%= errors.celular.msg %>
+                                </span>
+                                <% } %>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" name='email'>
+                            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" name='email' value="<%= locals.old && old.email %>">
                             <label for="floatingInput">Email</label>
+                            <% if(locals.errors && errors.email) { %>
+                                <span class='h6' style='color: red; font-size: 1.4rem;'>
+                                    <%= errors.email.msg %>
+                                </span>
+                                <% } %>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Senha" name='senha'>
+                            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Senha" name='senha' value="<%= locals.old && old.senha %>">
                             <label for="floatingPassword">Senha</label>
+                            <% if(locals.errors && errors.senha) { %>
+                                <span class='h6' style='color: red; font-size: 1.4rem; margin-top: 5px;'>
+                                    <%= errors.senha.msg %>
+                                </span>
+                                <% } %>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Senha" name='confirmarSenha' value="<%= locals.old && old.confirmarSenha %>">
+                            <label for="floatingPassword">Confirmar senha</label>
+                            <% if(locals.errors && errors.confirmarSenha) { %>
+                                <span class='h6' style='color: red; font-size: 1.4rem; margin-top: 5px;'>
+                                    <%= errors.confirmarSenha.msg %>
+                                </span>
+                                <% } %>
                         </div>
                         <button class="btn btn-info w-100 btn-lg mb-5" type="submit">Cadastrar</button>
                     </form>
