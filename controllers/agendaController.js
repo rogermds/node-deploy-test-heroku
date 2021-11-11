@@ -38,6 +38,9 @@ const agendaController = {
 				},
 			},
 			order: [["id_contato", "ASC"]],
+			where: {
+				id_usuario: res.locals.sessao.id_usuario,
+			},
 		});
 		let totalPaginas = Math.round(total / 10);
 		return res.render("agenda", { contatosGeral, totalPaginas });
@@ -95,10 +98,10 @@ const agendaController = {
 	getExcluir: async (req, res) => {
 		let { id } = req.params;
 		let unicoContato = await Contato.destroy({
-				where: {
-					id_contato: id,
-				},
-			});
+			where: {
+				id_contato: id,
+			},
+		});
 		res.redirect("/agenda");
 	},
 	// getUsuarios: async (req, res) => {
