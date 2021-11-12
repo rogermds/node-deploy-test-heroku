@@ -21,6 +21,7 @@ const agendaController = {
 		});
 		let totalPaginas = Math.round(total / 10);
 		return res.render("agenda", { contatosGeral, totalPaginas });
+		// res.send(contatosGeral);
 	},
 	pesquisar: async (req, res) => {
 		let { nome, page = 1 } = req.query;

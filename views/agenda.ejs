@@ -32,20 +32,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% contatosGeral.forEach( contatos=> { %>
+                    <% var size=Object.keys(contatosGeral).length %>
+                    <% for(let i=0;i<size;i++) { %>
                         <tr>
-                            <td><%= contatos.id_contato %></td>
-                            <td><%= contatos.nome %></td>
-                            <td><%= contatos.celular1 %></td>
-                            <td><%= contatos.celular2 %></td>
-                            <td><%= contatos.telefone %></td>
+                            <td><%= i+1 %></td>
+                            <td><%= contatosGeral[i].nome %></td>
+                            <td><%= contatosGeral[i].celular1 %></td>
+                            <td><%= contatosGeral[i].celular2 %></td>
+                            <td><%= contatosGeral[i].telefone %></td>
                             <td>
-                                <a href="/agenda/contatos/<%= contatos.id_contato %>" class='btn btn-primary'>Ver</a>
-                                <a href="/agenda/contatos/editar/<%= contatos.id_contato %>" class='btn btn-secondary'>Editar</a>
-                                <a href="/agenda/excluir/<%= contatos.id_contato %>" class='btn btn-danger'>Excluir</a>
+                                <a href="/agenda/contatos/<%= contatosGeral[i].id_contato %>" class='btn btn-primary'>Ver</a>
+                                <a href="/agenda/contatos/editar/<%= contatosGeral[i].id_contato %>" class='btn btn-secondary'>Editar</a>
+                                <a href="/agenda/excluir/<%= contatosGeral[i].id_contato %>" class='btn btn-danger'>Excluir</a>
                             </td>
                         </tr>
-                        <% }) %>
+                        <% } %> 
                 </tbody>
             </table>
         </div>
