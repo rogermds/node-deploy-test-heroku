@@ -19,9 +19,8 @@ const agendaController = {
 				id_usuario: res.locals.sessao.id_usuario,
 			},
 		});
-		let totalPaginas = Math.round(total / 10);
+		let totalPaginas = Math.ceil(total / 10);
 		return res.render("agenda", { contatosGeral, totalPaginas });
-		// res.send(contatosGeral);
 	},
 	pesquisar: async (req, res) => {
 		let { nome, page = 1 } = req.query;
@@ -54,7 +53,7 @@ const agendaController = {
 		return res.render("info-contato", { unicoContato });
 	},
 	getAdicionar: (req, res) => {
-		return res.render("adicionar-contato");
+		return res.render("cadastrar-contato");
 	},
 	postAdicionar: async (req, res) => {
 		const { nome, celular1, celular2, telefone } = req.body;

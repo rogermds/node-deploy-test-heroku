@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 var agendaController = require("../controllers/agendaController");
 
+// ARRUMAR VALIDATOR CADASTRO CONTATO
+
 /* GET home page. */
 router.get("/", agendaController.index);
 router.get("/contatos/:id", agendaController.getUnicoContato);
